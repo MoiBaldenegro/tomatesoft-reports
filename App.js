@@ -1,36 +1,32 @@
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import { useEffect} from "react";
+import {SafeAreaProvider} from "react-native-safe-area-context";
+// styles
 import {
-  Button,
-  StyleSheet,
   Text,
   TouchableHighlight,
   View,
 } from "react-native";
+import { useReportsStore } from "./src/store/reports.store";
+import Main from "./src/store/main";
+import { styles } from "./app.styles";
+import TomateLogo from "./src/components/images/logo";
 
 export default function App() {
-  const [reports, setReports] = useState([]);
+
+  const getReports = useReportsStore((state) => state.getReports);
+
+  useEffect(() => {
+    getReports();
+  }, [] );
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-      <Button
-        title="Click me"
-        onPress={() => alert("Button Clicked")}
-        color={"red"}
-      />
-      <TouchableHighlight>
-        <Text>Touchable Highlight</Text>
-      </TouchableHighlight>
-    </View>
+    <SafeAreaProvider>
+      <View style={styles.container}>
+        <StatusBar style="light" />
+        <Main/>
+      </View>
+    </SafeAreaProvider>
+    
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

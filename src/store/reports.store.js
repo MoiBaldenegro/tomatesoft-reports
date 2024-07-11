@@ -12,7 +12,12 @@ export const useReportsStore = create((set) => ({
     const formattedData = data.map((item) => ({
       id: item.id,
       name: item.name,
-      period: item.period,
+      period: new Date(item.createdAt).toLocaleDateString('es-ES', {
+        weekday: 'long', // día de la semana
+        year: 'numeric',
+        month: 'long', // mes completo
+        day: 'numeric'
+      }).toLocaleUpperCase(),
       // agrega aquí otros campos personalizados que necesites
     }));
 
