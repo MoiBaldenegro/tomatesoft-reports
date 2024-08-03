@@ -1,14 +1,12 @@
 // imports
-import React, { useEffect, useRef } from 'react';
-import { View, Text, Animated } from 'react-native';
-import { styles } from '../../../app.styles';
+import React, { useEffect, useRef } from "react";
+import { View, Text, Animated } from "react-native";
+import { styles } from "../../../app.styles";
 
 export default function Card({ item }) {
   return (
-    <View style={styles.card}>
-      <Text style={styles.text}>
-        {item.period}
-      </Text>
+    <View key={item}>
+      <Text style={styles.text}>{item.period}PERIUODITEM</Text>
     </View>
   );
 }
@@ -27,9 +25,7 @@ export function AnimatedCard({ item, index }) {
 
   return (
     <Animated.View style={[styles.card, { opacity }]}>
-    <Text style={styles.text}>{item.period}</Text>
-  </Animated.View>
+      <Text style={styles.text}>{item.period}CARDITEM</Text>
+    </Animated.View>
   );
 }
-
-       

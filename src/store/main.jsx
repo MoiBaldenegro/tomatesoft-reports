@@ -1,15 +1,19 @@
 // imports
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View, ActivityIndicator, FlatList } from 'react-native';
 import { styles } from '../../app.styles';
 import { useReportsStore } from './reports.store';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Card, { AnimatedCard } from '../components/elements/card';
+import  { AnimatedCard } from '../components/elements/card';
 import TomateLogo from '../components/images/logo';
+import { Link } from 'expo-router';
 
 export default function Main() {
   const reports = useReportsStore((state) => state.reports);
+  const getReports = useReportsStore((state) => state.getReports);
   const insets = useSafeAreaInsets();
+
+ console.log(reports);
 
   return (
     <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom, width: '100%',flex: 1, flexDirection: "column" , justifyContent: 'center'} }>
@@ -27,6 +31,8 @@ export default function Main() {
           renderItem={({ item, index }) => <AnimatedCard item={item}  index={index}/>}
         />
       )}
+      <Link href={"/about"}>ABOUT</Link>
     </View>
   );
 }
+3
